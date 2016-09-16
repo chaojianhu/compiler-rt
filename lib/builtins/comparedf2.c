@@ -40,11 +40,14 @@
 #define DOUBLE_PRECISION
 #include "fp_lib.h"
 
+#include <limits.h>
+
 enum LE_RESULT {
     LE_LESS      = -1,
     LE_EQUAL     =  0,
     LE_GREATER   =  1,
-    LE_UNORDERED =  1
+    LE_UNORDERED =  1,
+    LE_FORCE_SIGNED_LONG = LONG_MIN
 };
 
 COMPILER_RT_ABI enum LE_RESULT
@@ -89,7 +92,8 @@ enum GE_RESULT {
     GE_LESS      = -1,
     GE_EQUAL     =  0,
     GE_GREATER   =  1,
-    GE_UNORDERED = -1   // Note: different from LE_UNORDERED
+    GE_UNORDERED = -1,   // Note: different from LE_UNORDERED
+    GE_FORCE_SIGNED_LONG = LONG_MIN
 };
 
 COMPILER_RT_ABI enum GE_RESULT

@@ -41,11 +41,14 @@
 #include "fp_lib.h"
 
 #if defined(CRT_HAS_128BIT) && defined(CRT_LDBL_128BIT)
+#include <limits.h>
+
 enum LE_RESULT {
     LE_LESS      = -1,
     LE_EQUAL     =  0,
     LE_GREATER   =  1,
-    LE_UNORDERED =  1
+    LE_UNORDERED =  1,
+    LE_FORCE_SIGNED_LONG = LONG_MIN
 };
 
 COMPILER_RT_ABI enum LE_RESULT __letf2(fp_t a, fp_t b) {
@@ -88,7 +91,8 @@ enum GE_RESULT {
     GE_LESS      = -1,
     GE_EQUAL     =  0,
     GE_GREATER   =  1,
-    GE_UNORDERED = -1   // Note: different from LE_UNORDERED
+    GE_UNORDERED = -1,   // Note: different from LE_UNORDERED
+    GE_FORCE_SIGNED_LONG = LONG_MIN
 };
 
 COMPILER_RT_ABI enum GE_RESULT __getf2(fp_t a, fp_t b) {

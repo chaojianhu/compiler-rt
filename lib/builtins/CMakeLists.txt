@@ -6,6 +6,11 @@
 # added to a sub-directory and not this CMakeLists file.
 
 set(GENERIC_SOURCES
+  extenddftf2.c
+  extendsftf2.c
+  trunctfdf2.c
+  trunctfsf2.c
+
   absvdi2.c
   absvsi2.c
   absvti2.c
@@ -179,12 +184,6 @@ if (NOT MSVC)
   set(x86_64_SOURCES
       x86_64/chkstk.S
       x86_64/chkstk2.S
-      x86_64/floatdidf.c
-      x86_64/floatdisf.c
-      x86_64/floatdixf.c
-      x86_64/floatundidf.S
-      x86_64/floatundisf.S
-      x86_64/floatundixf.S
       ${GENERIC_SOURCES})
   set(x86_64h_SOURCES ${x86_64_SOURCES})
 
@@ -331,8 +330,6 @@ set(arm_SOURCES
 
 set(aarch64_SOURCES
   comparetf2.c
-  extenddftf2.c
-  extendsftf2.c
   fixtfdi.c
   fixtfsi.c
   fixtfti.c
@@ -344,8 +341,6 @@ set(aarch64_SOURCES
   floatunditf.c
   floatunsitf.c
   multc3.c
-  trunctfdf2.c
-  trunctfsf2.c
   ${GENERIC_SOURCES})
 
 set(armhf_SOURCES ${arm_SOURCES})
